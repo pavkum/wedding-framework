@@ -150,10 +150,7 @@ module.exports = function (grunt) {
       },
       build: {
         files: {
-          '<%= config.build %>/scripts/background.js': [
-            'js/background/*.js', '!js/background/chromereload.js'
-          ],
-          '<%= config.build %>/scripts/prime.js': 'js/lib/*.js',
+          '<%= config.build %>/scripts/wedding.js': 'js/**/*.js',
           '<%= config.build %>/styles/app.css': 'styles/*.css'
         }
       }

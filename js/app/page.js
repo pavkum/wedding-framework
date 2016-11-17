@@ -12,22 +12,18 @@ var Wedding = Wedding || {};
     'slide-bottom': 'slide-top'
   };
 
-  let animateElement = function (elem, isEnter, delay) {
+  let animateElement = function (elem, isEnter, isForward) {
     let animation = isEnter ? 'animation-enter' : 'animation-exit';
     animation = elem.getAttribute(animation);
     animation = Wedding.Animations.getAnimation(animation) || {};
     animation = Wedding.Utils.extend({}, animation, {
-      delay: delay,
       display: isEnter ? 'block' : 'none'
     });
 
-    //elem.style.display = 'block';
-
     let command = animation.command;
 
-    if (!isEnter) {
+    if (!isForward) {
       command = opposite[command];
-      command = animation.command;
     }
 
     let commandOptions = {};
@@ -40,32 +36,34 @@ var Wedding = Wedding || {};
       }
       break;
     case 'slide-right':
-      commandOptions.translateX = [elem.getAttribute('left'), '-100rem'];
+      if (isEnter) {
+        commandOptions.translateX = [elem.getAttribute('left'), '-100rem'];
+      } else {
+        commandOptions.translateX = ['100rem', elem.getAttribute('left')];
+      }
       break;
     case 'slide-top':
-      commandOptions.translateY = [elem.getAttribute('top'), '-100rem'];
+      if (isEnter) {
+        commandOptions.translateY = [elem.getAttribute('top'), '-100rem'];
+      } else {
+        commandOptions.translateY = ['100rem', elem.getAttribute('top')];
+      }
       break;
     case 'slide-bottom':
-      commandOptions.translateY = [elem.getAttribute('top'), '100%'];
+      if (isEnter) {
+        commandOptions.translateY = [elem.getAttribute('top'), '100rem'];
+      } else {
+        commandOptions.translateY = ['-100rem', elem.getAttribute('top')];
+      }
       break;
     }
 
     Velocity(elem, commandOptions, animation);
   };
 
-  let animateElements = function (elems, isForward, isExit) {
-    // gather delays
-    let delays = [];
+  let animateElements = function (elems, isEnter, isForward) {
     for (let i = 0; i < elems.length; i++) {
-      let delay = elems[i].getAttribute('delay') || 0;
-      delays.push(delay);
-    }
-
-    // lets think about delay reversal later
-
-    for (let i = 0; i < elems.length; i++) {
-      let delay = elems[i].getAttribute('delay') || 0;
-      animateElement(elems[i], isForward, delay, isExit);
+      animateElement(elems[i], isEnter, isForward);
     }
   };
 
@@ -75,35 +73,36 @@ var Wedding = Wedding || {};
 
   let nextPage = function () {
     // exit previous elems
-    let elems = getElems(currentPage);
+    let nextPage = currentPage + 1;
+    let nextPageElems = getElems(nextPage);
+    let currentPageElems = getElems(currentPage);
 
-    if (elems.length > 0) {
-      animateElements(elems, false);
-    }
-
-    let page = currentPage + 1;
-    elems = getElems(page);
-
-    if (elems.length > 0) {
+    if (nextPageElems.length > 0) {
       // next page exists. Proceed
-      animateElements(elems, true);
-      currentPage = page;
+
+      if (currentPageElems.length > 0) {
+        animateElements(currentPageElems, false, true);
+      }
+
+      animateElements(nextPageElems, true, true);
+      currentPage = nextPage;
     }
   };
 
   let previousPage = function () {
-    let elems = getElems(currentPage);
+    let previousPage = currentPage - 1;
+    let previousPageElems = getElems(previousPage);
+    let currentPageElems = getElems(currentPage);
 
-    if (elems.length > 0) {
-      animateElements(elems, false);
-    }
+    if (previousPageElems.length > 0) {
+      // if previous page exists then only proceed
 
-    let page = currentPage - 1;
-    elems = getElems(page);
+      if (currentPageElems.length > 0) {
+        animateElements(currentPageElems, false, false);
+      }
 
-    if (elems.length > 0) {
-      animateElements(elems, false);
-      currentPage = page;
+      animateElements(previousPageElems, true, false);
+      currentPage = previousPage;
     }
   };
 

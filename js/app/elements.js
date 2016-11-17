@@ -21,16 +21,9 @@ var Wedding = Wedding || {};
           elem.innerText = elemConfig.text;
         }
 
-        if (elemConfig.style.font) {
-          elem.style.fontFamily = elemConfig.style.font;
+        for (let styleName in elemConfig.style) {
+          elem.style[styleName] = elemConfig.style[styleName];
         }
-
-        if (elemConfig.style['font-size']) {
-          elem.style.fontSize = elemConfig.style['font-size'];
-        }
-
-        elem.style.width = elemConfig.style.width;
-        elem.style.height = elemConfig.style.height;
 
         let position = elemConfig.style.position || [];
         let left = (position[0] || 0) + 'rem';
