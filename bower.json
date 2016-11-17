@@ -1,0 +1,13 @@
+{
+  "name": "xvdu-app",
+  "version": "0.0.0",
+  "dependencies": {
+    "backbone.marionette": "marionette#^2.4.7",
+    "jquery": "^3.1.0",
+    "handlebars": "^4.0.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "mocha": "^3.0.2"
+  }
+}

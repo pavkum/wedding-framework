@@ -1,0 +1,7 @@
+-/.tmp
+-/.sass-cache
+-/node_modules
+-/app/lib/
+-/app/bower_components
+-/app/node_components
+-/dist
