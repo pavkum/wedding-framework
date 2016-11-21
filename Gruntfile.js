@@ -126,9 +126,7 @@ module.exports = function (grunt) {
           cwd: '.',
           dest: '<%= config.build %>',
           src: [
-            'manifest.json',
             'images/**.*',
-            '_locales/**/*.*'
           ]
         }, {
           expand: true,
@@ -195,8 +193,6 @@ module.exports = function (grunt) {
   grunt.registerTask('build', [
     'clean:build',
     'jshint',
-    'handlebars',
-    'browserify:build',
     'copy:build',
     'concat:build'
   ]);
