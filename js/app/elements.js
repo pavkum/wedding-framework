@@ -16,7 +16,7 @@ var Wedding = Wedding || {};
 
         // set text or background
         if (elemConfig.image) {
-          elem.style.backgroundImage = elemConfig.image;
+          elem.style.backgroundImage = 'url(' + elemConfig.image + ')';
         } else {
           elem.innerText = elemConfig.text;
         }
@@ -26,8 +26,8 @@ var Wedding = Wedding || {};
         }
 
         let position = elemConfig.style.position || [];
-        let left = (position[0] || 0) + 'rem';
-        let top = (position[1] || 0) + 'rem';
+        let left = (position[0] || '0rem');
+        let top = (position[1] || '0rem');
 
         elem.style.left = left;
         elem.style.top = top;

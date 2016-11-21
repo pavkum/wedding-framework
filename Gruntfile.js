@@ -32,7 +32,7 @@ module.exports = function (grunt) {
       },
       styles: {
         files: ['js/app/**/*.css'],
-        tasks: ['browserify:debug'],
+        tasks: ['concat:debug'],
         options: {
           livereload: '<%= connect.options.livereload %>'
         }

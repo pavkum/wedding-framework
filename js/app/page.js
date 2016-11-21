@@ -8,8 +8,10 @@ var Wedding = Wedding || {};
   let opposite = {
     'slide-left': 'slide-right',
     'slide-right': 'slide-left',
-    'slide-top': 'slide-bottom',
-    'slide-bottom': 'slide-top'
+    'slide-up': 'slide-down',
+    'slide-down': 'slide-up',
+    'fade-in': 'fade-in',
+    'fade-out': 'fade-out'
   };
 
   let animateElement = function (elem, isEnter, isForward) {
@@ -42,20 +44,35 @@ var Wedding = Wedding || {};
         commandOptions.translateX = ['100rem', elem.getAttribute('left')];
       }
       break;
-    case 'slide-top':
+    case 'slide-down':
       if (isEnter) {
         commandOptions.translateY = [elem.getAttribute('top'), '-100rem'];
       } else {
         commandOptions.translateY = ['100rem', elem.getAttribute('top')];
       }
       break;
-    case 'slide-bottom':
+    case 'slide-up':
       if (isEnter) {
         commandOptions.translateY = [elem.getAttribute('top'), '100rem'];
       } else {
         commandOptions.translateY = ['-100rem', elem.getAttribute('top')];
       }
       break;
+
+    case 'fade-in':
+      if (isEnter) {
+        commandOptions = 'fadeIn';
+      } else {
+        commandOptions = 'fadeOut';
+      }
+      break;
+
+    case 'fade-out':
+      if (isEnter) {
+        commandOptions = 'fadeOut';
+      } else {
+        commandOptions = 'fadeIn';
+      }
     }
 
     Velocity(elem, commandOptions, animation);
