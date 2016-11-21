@@ -61,17 +61,17 @@ var Wedding = Wedding || {};
     },
     elements: {
       'page-1-pre-wedding-image': {
-        image: 'images/kalash.png',
+        image: 'images/pre-wedding.jpg',
         style: {
-          width: '96rem',
-          height: '60rem',
+          width: 'auto',
+          height: '100%',
           right: '0rem',
           margin: 'auto',
-          position: ['0rem', '2.5rem']
+          position: ['0rem', '0rem']
         },
         animation: {
-          enter: 'slide-down',
-          exit: 'slide-down'
+          enter: 'fade-in',
+          exit: 'fade-in'
         },
         page: 1
       },
@@ -213,7 +213,7 @@ var Wedding = Wedding || {};
         },
         page: 3
       },
-      'page-4-groom-info': {
+      'page-3-groom-info': {
         text: 'Vishwa is more realistic and practical guy but super cool. He is fond of adventure and extremely confident guy. But very lazy to trim his beard ... He is fond of super bikes and cars and get crazy like anything.',
         style: {
           width: '35rem',
@@ -230,6 +230,77 @@ var Wedding = Wedding || {};
           exit: 'slide-down'
         },
         page: 3
+      },
+      'page-4-our-photos': {
+        text: 'Ourselves...',
+        style: {
+          width: '25rem',
+          fontSize: '4rem',
+          color: 'Yellow',
+          fontFamily: 'Great Vibes',
+          textAlign: 'center',
+          right: '0rem',
+          position: ['0rem', '2.5rem']
+        },
+        animation: {
+          enter: 'slide-right',
+          exit: 'slide-right'
+        },
+        page: 4
+      },
+      'page-4-vidya-vishwa': {
+        image: 'images/page-4-vidya-vishwa.h',
+        style: {
+          width: '30rem',
+          height: '30rem',
+          borderRadius: '100%',
+          right: '0rem',
+          bottom: '0rem',
+          margin: 'auto',
+          position: ['0rem', '0rem']
+        },
+        animation: {
+          enter: 'slide-left',
+          exit: 'slide-left'
+        },
+        page: 4
+      },
+      'page-5-venue': {
+        text: 'Venue',
+        style: {
+          width: '25rem',
+          fontSize: '4rem',
+          fontFamily: 'Great Vibes',
+          textAlign: 'center',
+          color: 'Yellow',
+          right: '0rem',
+          position: ['0rem', '2.5rem']
+        },
+        animation: {
+          enter: 'slide-right',
+          exit: 'slide-right'
+        },
+        page: 5
+      },
+      'page-6-thank-you': {
+        text: 'Thank you',
+        style: {
+          width: '25rem',
+          height: '20rem',
+          margin: 'auto',
+          fontSize: '4rem',
+          fontFamily: 'Great Vibes',
+          textAlign: 'center',
+          color: 'white',
+          right: '0rem',
+          bottom: '0rem',
+          position: ['0rem', '0rem']
+        },
+        animation: {
+          enter: 'slide-right',
+          exit: 'slide-right'
+        },
+        page: 6
       }
     }
   };

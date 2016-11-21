@@ -11,19 +11,23 @@ var Wedding = Wedding || {};
       for (let elemName in config) {
         let elemConfig = config[elemName];
 
-        let elem = document.createElement('div');
-        elem.setAttribute('name', elemName);
+        let elem;
 
         // set text or background
         if (elemConfig.image) {
-          elem.style.backgroundImage = 'url(' + elemConfig.image + ')';
+          elem = document.createElement('img');
+          elem.src = elemConfig.image;
+          //elem.style.backgroundImage = 'url(' + elemConfig.image + ')';
         } else {
+          elem = document.createElement('div');
           elem.innerText = elemConfig.text;
         }
 
         for (let styleName in elemConfig.style) {
           elem.style[styleName] = elemConfig.style[styleName];
         }
+
+        elem.setAttribute('name', elemName);
 
         let position = elemConfig.style.position || [];
         let left = (position[0] || '0rem');
